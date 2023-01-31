@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.tkvangorder.intelliflix.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.tkvangorder.intelliflix.MyBundle
 
 class MyApplicationService {
 
