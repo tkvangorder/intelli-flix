@@ -21,9 +21,32 @@ plugins {
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
+
 // Configure project's dependencies
 repositories {
     mavenCentral()
+}
+
+val lombokVersion = "1.18.24"
+dependencies {
+    // Using jackson for json serialization/de-serialization
+    implementation(platform("com.fasterxml.jackson:jackson-bom:2.14.2"))
+    implementation("com.fasterxml.jackson.core:jackson-databind")
+    implementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
+
+    // Using Lombok to reduce boilerplate code
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    // Testing dependencies
+    testImplementation(platform("org.junit:junit-bom:latest.release"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.assertj:assertj-core:latest.release")
+
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.

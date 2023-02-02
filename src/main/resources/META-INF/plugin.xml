@@ -1,18 +1,18 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.tkvangorder.intelliflix</id>
-    <name>IntelliJ Platform Plugin intelli-flix</name>
+    <name>IntelliFlix Developer Assistance</name>
     <vendor>tkvangorder</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.tkvangorder.intelliflix.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.tkvangorder.intelliflix.services.MyProjectService"/>
+        <applicationService serviceImplementation="org.tkv.intelliflix.services.IntelliFlixApplicationService"/>
+        <projectService serviceImplementation="org.tkv.intelliflix.services.IntelliFlixProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.tkvangorder.intelliflix.listeners.MyProjectManagerListener"
+        <listener class="org.tkv.intelliflix.listeners.IntelliFlixProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>
