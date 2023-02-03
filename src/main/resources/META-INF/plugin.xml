@@ -15,4 +15,17 @@
         <listener class="org.tkv.intelliflix.listeners.IntelliFlixProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+        <group id="org.tkv.intelliflix.IntelliFlixActions" text="Intelli-Flix" popup="true" icon="IntelliFlixIcons.IntelliFlix" >
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </group>
+        <action id="org.tkv.intelliflix.codesuggest" class="org.tkv.intelliflix.actions.CodeSuggestAction"
+                text="OpenGPT Code Suggestion" description="Ask OpenGpt for a code suggestion in the context of the current editor">
+            <add-to-group group-id="org.tkv.intelliflix.IntelliFlixActions" anchor="first"/>
+        </action>
+        <action id="org.tkv.intelliflix.actions.OpenChatAction" class="org.tkv.intelliflix.actions.OpenChatAction"
+                text="Chat With OpenGPT" description="Open a chat tools window">
+            <add-to-group group-id="org.tkv.intelliflix.IntelliFlixActions" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
