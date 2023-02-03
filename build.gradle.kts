@@ -1,5 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.gradle.api.tasks.compile.JavaCompile;
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -47,6 +48,10 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.assertj:assertj-core:latest.release")
 
+}
+
+tasks.withType(JavaCompile::class.java).configureEach {
+    options.compilerArgs.add("-parameters")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
