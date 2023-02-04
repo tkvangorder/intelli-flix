@@ -28,4 +28,8 @@
             <add-to-group group-id="org.tkv.intelliflix.IntelliFlixActions" anchor="last"/>
         </action>
     </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="IntelliFlix" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="org.tkv.intelliflix.windows.ChatGptToolWindowFactory"/>
+    </extensions>
 </idea-plugin>

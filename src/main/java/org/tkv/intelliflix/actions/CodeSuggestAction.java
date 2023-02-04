@@ -7,6 +7,5 @@ import org.jetbrains.annotations.NotNull;
 public class CodeSuggestAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-
     }
 }
