@@ -25,7 +25,9 @@ TODO:
 - [x] Explore the IntelliJ Platform SDK and experiment with different user interface ideas.
 - [x] How to auto-wrap and set minimum dimensions in the editor text field?
 - [x] Implement a "tools" window to allow users to chat with chatGPT.
-- [ ] Implement a popup dialog that is enabled when there is a selection in the editor. This dialog will allow the user to add optional instructions and will send both the selected code and the instructions to chatGPT's code editor API, replace the contents of the editor with the response, and then close the dialog.
+- [x] Add token limit to "tools" window.
+- [ ] Provide usage feedback from chatGPT response into IDE. Maybe in status bar at the bottom of the IDE? 
+- [x] Implement a popup dialog that is enabled when there is a selection in the editor. This dialog will allow the user to add optional instructions and will send both the selected code and the instructions to chatGPT's code editor API, replace the contents of the editor with the response, and then close the dialog.
 - [ ] Add button to accept the chatGPT response and close the dialog.  
 - [ ] Add a settings page to allow users to configure the API key.
 - [ ] Figure out how to call the chatGPT API from a background thread so we don't freeze the UI

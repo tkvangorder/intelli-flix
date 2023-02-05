@@ -5,15 +5,18 @@ import org.tkv.intelliflix.chatgpt.ChatGptClient;
 import org.tkv.intelliflix.chatgpt.ChatGptEnvironment;
 
 public class IntelliFlixProjectService {
-    Project project;
+
+    private final Project project;
 
     ChatGptClient chatGptClient;
 
     public IntelliFlixProjectService(Project project) {
         this.project = project;
-        System.out.println("Project Name : " + project.getName());
     }
 
+    public Project getProject() {
+        return project;
+    }
 
     public ChatGptClient getChatGptClient() {
         // TODO : If I get settings working, will need to check if the settings have changed and reinitialize the client.

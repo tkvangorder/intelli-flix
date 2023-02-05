@@ -1,18 +1,20 @@
 package org.tkv.intelliflix.windows;
 
-import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.ui.EditorTextField;
+import com.intellij.ui.components.fields.IntegerField;
 import com.intellij.util.ui.FormBuilder;
-import org.jetbrains.annotations.NotNull;
 import org.tkv.intelliflix.chatgpt.ChatResponse;
 import org.tkv.intelliflix.chatgpt.CompletionRequest;
 import org.tkv.intelliflix.services.IntelliFlixProjectService;
+import org.tkv.intelliflix.ui.WrappingEditorTextField;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ChatGptToolWindow {
     private final EditorTextField chatPrompt;
+
+    private final IntegerField maxTokens;
+
     private final JButton submitButton;
     private final EditorTextField resultPane;
 
@@ -20,10 +22,13 @@ public class ChatGptToolWindow {
 
     public ChatGptToolWindow(IntelliFlixProjectService projectService) {
         this.projectService = projectService;
-        chatPrompt = new WrappingEditorTextField();
+        chatPrompt = new WrappingEditorTextField(200, 200);
+        maxTokens = new IntegerField("maxTokens", 10, 500);
+        maxTokens.setDefaultValue(50);
+        maxTokens.setValue(50);
         submitButton = new JButton("Submit");
         submitButton.addActionListener(e -> submitButtonClicked());
-        resultPane = new WrappingEditorTextField();
+        resultPane = new WrappingEditorTextField(200, 200);
         resultPane.setEnabled(false);
     }
 
@@ -31,6 +36,7 @@ public class ChatGptToolWindow {
 
         return FormBuilder.createFormBuilder()
                 .addLabeledComponent("Enter prompt:", chatPrompt)
+                .addLabeledComponent("Max tokens:", maxTokens)
                 .addComponent(submitButton)
                 .addComponentFillVertically(resultPane, 0)
                 .getPanel();
@@ -44,7 +50,11 @@ public class ChatGptToolWindow {
         String result;
         try {
             //Need to do this on a non-UI thread, how do I do that?
-            ChatResponse response = projectService.getChatGptClient().sendCompletionRequest(CompletionRequest.builder().prompt(prompt).build());
+            ChatResponse response = projectService.getChatGptClient().sendCompletionRequest(
+                    CompletionRequest.builder()
+                            .prompt(prompt)
+                            .maxTokens(maxTokens.getValue())
+                            .build());
             if (response.getChoices() != null && response.getChoices().size() > 0) {
                 result = response.getChoices().get(0).getText();
             } else if (response.getError() != null)  {
@@ -57,21 +67,5 @@ public class ChatGptToolWindow {
             result = "ERROR: " + e.getMessage();
         }
         resultPane.setText(result);
-    }
-
-
-    private static class WrappingEditorTextField extends EditorTextField {
-
-        @Override
-        protected @NotNull EditorEx createEditor() {
-            final EditorEx editor = super.createEditor();
-            editor.setOneLineMode(false);
-            editor.setCaretEnabled(true);
-            editor.getScrollPane().setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-            editor.getComponent().setPreferredSize(new Dimension(200, 200));
-            editor.getSettings().setUseSoftWraps(true);
-
-            return editor;
-        }
     }
 }

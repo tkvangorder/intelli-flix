@@ -16,16 +16,18 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
     <actions>
-        <group id="org.tkv.intelliflix.IntelliFlixActions" text="Intelli-Flix" popup="true" icon="IntelliFlixIcons.IntelliFlix" >
+        <action id="org.tkv.intelliflix.actions.OpenChatAction"
+                class="org.tkv.intelliflix.actions.OpenChatAction"
+                icon="IntelliFlixIcons.IntelliFlix"
+                text="Chat With OpenGPT"
+                description="Open a chat tools window">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
-        </group>
-        <action id="org.tkv.intelliflix.codesuggest" class="org.tkv.intelliflix.actions.CodeSuggestAction"
-                text="OpenGPT Code Suggestion" description="Ask OpenGpt for a code suggestion in the context of the current editor">
-            <add-to-group group-id="org.tkv.intelliflix.IntelliFlixActions" anchor="first"/>
         </action>
-        <action id="org.tkv.intelliflix.actions.OpenChatAction" class="org.tkv.intelliflix.actions.OpenChatAction"
-                text="Chat With OpenGPT" description="Open a chat tools window">
-            <add-to-group group-id="org.tkv.intelliflix.IntelliFlixActions" anchor="last"/>
+        <action id="org.tkv.intelliflix.actions.CodeSuggestAction"
+                class="org.tkv.intelliflix.actions.CodeSuggestAction"
+                text="OpenGPT Code Suggestion"
+                description="Ask OpenGPT for a suggestion in the context of the currently selected code in the editor.">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
