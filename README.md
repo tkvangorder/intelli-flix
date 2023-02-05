@@ -12,14 +12,14 @@ You will need to have an account with OpenAI, as this plugin will send requests 
 
 Note: You can leave the API URL blank, as it will default to using OpenAI's public API.
 
-[!image](./images/settings.png)
+![](./images/settings.png)
 
 ### Using the Tools Window
 
 This plugin adds a new tools window that allows a user to submit prompts to ChatGPT and is similar in nature to what
 a user might do when going directly to the chatGPT website. This window can be opened from the "Tools" menu.
 
-[!image](./images/tools-window-example.png)
+![](./images/tools-window-example.png)
 
 Note: Each call to the public API will consume tokens from your account and the max tokens is intended to limit how much this plugin will consume your quota. If you are receiving partial responses, you can increase the max tokens to allow for longer responses.
 
@@ -29,15 +29,15 @@ There is also a context menu available in the editor that allows a user to selec
 
 1. Select some code in the editor and right click, and select "OpenAI Code Suggestion".
 
-[!image](./images/code-suggest-1.png)
+![](./images/code-suggest-1.png)
 
 2. A popup dialog will appear that allows the user to add optional instructions and will send both the selected code and the instructions to OpenAI's code editor API.
 
-[!image](./images/code-suggest-2.png)
+![](./images/code-suggest-2.png)
 
 3. The response from OpenAI will replace the currently selected text in the editor.
 
-[!image](./images/code-suggest-3.png)
+![](./images/code-suggest-3.png)
 
 ## Build Status
 ![Build](https://github.com/tkvangorder/intelli-flix/workflows/Build/badge.svg)
