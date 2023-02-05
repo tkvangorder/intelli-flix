@@ -1,13 +1,43 @@
 # intelli-flix
 
-This is a plugin for IntelliJ that integrates with chatGPT and it is not intended to be used in production.
+This repo was created from the IntelliJ Platform Plugin Template. It is a prototype for how chatGPT might be integrated into IntelliJ. It is not intended to be used in production. This is the first time I have build a plugin for IntelliJ, I am sure there are many things that could be improved, and I am always open to feedback.
+
+## Running the Plugin
+
+To run the plugin, you can use the `runIde` Gradle task. This will launch a new instance of IntelliJ with the plugin installed.  Or, ff you have imported the project into IntelliJ, you can also run the plugin using the "Run Plugin" run configuration.
+
+### Setting the API Key
+
+You will need to have an account with OpenAI, as this plugin will send requests to their API. You will also need to [create an API key using this link](https://platform.openai.com/account/api-keys). Once you have an API key, you can configure it in the IDE settings. 
+
+Note: You can leave the API URL blank, as it will default to using OpenAI's public API.
+
+[!image](./images/settings.png)
+
+### Using the Tools Window
 
 This plugin adds a new tools window that allows a user to submit prompts to ChatGPT and is similar in nature to what
 a user might do when going directly to the chatGPT website. This window can be opened from the "Tools" menu.
 
-There is also a context menu option that allows a user to select code within the editor. The context action will open a
-popup dialog that allows the user to add optional instructions and will send both the selected code and the instructions
-to chatGPT's code editor API, replace the contents of the editor with the response, and then close the dialog.
+[!image](./images/tools-window-example.png)
+
+Note: Each call to the public API will consume tokens from your account and the max tokens is intended to limit how much this plugin will consume your quota. If you are receiving partial responses, you can increase the max tokens to allow for longer responses.
+
+### Using the Code Suggest Context Menu
+
+There is also a context menu available in the editor that allows a user to select code and send it to chatGPT for suggestions.
+
+1. Select some code in the editor and right click, and select "OpenAI Code Suggestion".
+
+[!image](./images/code-suggest-1.png)
+
+2. A popup dialog will appear that allows the user to add optional instructions and will send both the selected code and the instructions to OpenAI's code editor API.
+
+[!image](./images/code-suggest-2.png)
+
+3. The response from OpenAI will replace the currently selected text in the editor.
+
+[!image](./images/code-suggest-3.png)
 
 ## Build Status
 ![Build](https://github.com/tkvangorder/intelli-flix/workflows/Build/badge.svg)
@@ -39,6 +69,8 @@ to chatGPT's code editor API, replace the contents of the editor with the respon
 - [ ] Experiment with different prompts that could augment the user's prompts/instructions. For example, we could add "Always format your responses as markdown" and then render the results in the tools window.
 - [ ] Add better testing. I am sure there are some good examples of testing the UI components in the IntelliJ Platform SDK, I just ran out of time to investigate.
 - [ ] Move ChatGPT client to a separate library so that it can be shared across this plugin and VS Code (I think we could have a language server running a JVM).
+- [ ] Figure out why the CI build is failing, not really important in the context of this sample, but I would obviously need to figure this out if I wanted to publish this plugin.
+- [ ] Publish the plugin. 
 
 <!-- Plugin description -->
 This is a prototype for how chatGPT might be integrated into IntelliJ. It is not intended to be used in production.
