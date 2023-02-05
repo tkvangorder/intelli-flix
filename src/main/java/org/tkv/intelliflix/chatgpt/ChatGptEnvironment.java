@@ -1,6 +1,5 @@
 package org.tkv.intelliflix.chatgpt;
 
-import javax.annotation.Nullable;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,17 +12,24 @@ public class ChatGptEnvironment {
 
     Properties properties;
 
-
     public ChatGptEnvironment(Properties additionalProperties) {
         properties = additionalProperties;
     }
 
-    public String getOpenaiApiPersonalToken() {
+    public String getOpenaiApiAccessKey() {
         return getValue(OPENAI_API_PERSONAL_TOKEN_KEY);
+    }
+
+    public void setOpenaiApiAccessKey(String openaiApiAccessKey) {
+        properties.setProperty(OPENAI_API_PERSONAL_TOKEN_KEY, openaiApiAccessKey);
     }
 
     public String getOpenaiApiUrl() {
         return getValue(OPENAI_API_URL_KEY);
+    }
+
+    public void setOpenaiApiUrl(String openaiApiUrl) {
+        properties.setProperty(OPENAI_API_URL_KEY, openaiApiUrl);
     }
 
     public String getValue(String key) {

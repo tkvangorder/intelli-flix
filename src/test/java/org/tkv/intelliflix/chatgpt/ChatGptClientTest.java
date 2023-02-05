@@ -1,7 +1,6 @@
 package org.tkv.intelliflix.chatgpt;
 
 import org.junit.jupiter.api.Test;
-import org.tkv.intelliflix.IntelliFlixBundle;
 
 import java.io.IOException;
 
@@ -11,13 +10,13 @@ import java.io.IOException;
  */
 public class ChatGptClientTest {
 
-    private static ChatGptEnvironment environment = new ChatGptEnvironment(
+    private static final ChatGptEnvironment environment = new ChatGptEnvironment(
             ChatGptEnvironment.loadProperties(System.getProperty("user.home") + "/.intelliflix/settings.properties")
     );
 
     @Test
     void testCompletion() throws IOException, InterruptedException {
-        ChatGptClient client = new ChatGptClient(environment.getOpenaiApiPersonalToken());
+        ChatGptClient client = new ChatGptClient(environment.getOpenaiApiAccessKey());
         CompletionRequest request = CompletionRequest.builder()
                 .prompt("When I ask you what your name is please respond with \"ChatGPT, nice to meet you.\". What is your name?")
                 .build();
@@ -27,7 +26,7 @@ public class ChatGptClientTest {
 
     @Test
     void testCodeEdit() throws IOException, InterruptedException {
-        ChatGptClient client = new ChatGptClient(environment.getOpenaiApiPersonalToken());
+        ChatGptClient client = new ChatGptClient(environment.getOpenaiApiAccessKey());
         EditRequest request = EditRequest.builder()
                 .instruction("Given this code snippet in Java, please move the \"default\" case to the bottom of the switch statement and do not add any additional code")
                 .input(

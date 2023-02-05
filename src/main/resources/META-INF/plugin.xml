@@ -7,8 +7,13 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.tkv.intelliflix.services.IntelliFlixApplicationService"/>
+        <applicationService serviceImplementation="org.tkv.intelliflix.settings.IntelliFlixSettingsState"/>
         <projectService serviceImplementation="org.tkv.intelliflix.services.IntelliFlixProjectService"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="org.tkv.intelliflix.settings.IntelliFlixSettingsConfigurable"
+                id="org.tkv.intelliflix.settings.IntelliFlixSettingsConfigurable"
+                displayName="IntelliFlix"/>
     </extensions>
 
     <applicationListeners>
