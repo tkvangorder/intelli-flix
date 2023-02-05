@@ -7,6 +7,11 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
+/**
+ * This class is responsible for rendering the settings panel for the IntelliFlix plugin.
+ *
+ * Probably should have a text mask for the API key and should probably serialize the key as encrypted.
+ */
 public class IntelliFlixSettingsComponent {
     private final JPanel settingsPanel;
     private final JBTextField openaiApiAccessKey = new JBTextField();

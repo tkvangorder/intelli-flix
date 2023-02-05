@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.tkv.intelliflix.popups.ChatGptCodeSuggestPopup;
 import org.tkv.intelliflix.services.IntelliFlixProjectService;
 
+/**
+ * Code Suggest Action that is contextually available when a user has selected text in the editor.
+ */
 public class CodeSuggestAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {

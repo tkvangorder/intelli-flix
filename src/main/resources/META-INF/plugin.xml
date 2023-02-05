@@ -15,11 +15,6 @@
                 id="org.tkv.intelliflix.settings.IntelliFlixSettingsConfigurable"
                 displayName="IntelliFlix"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="org.tkv.intelliflix.listeners.IntelliFlixProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
     <actions>
         <action id="org.tkv.intelliflix.actions.OpenChatAction"
                 class="org.tkv.intelliflix.actions.OpenChatAction"

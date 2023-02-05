@@ -5,6 +5,9 @@ import org.tkv.intelliflix.chatgpt.ChatGptClient;
 import org.tkv.intelliflix.chatgpt.ChatGptEnvironment;
 import org.tkv.intelliflix.settings.IntelliFlixSettingsState;
 
+/**
+ * This service is used to store the project level state for the IntelliFlix plugin.
+ */
 public class IntelliFlixProjectService {
 
     private final Project project;

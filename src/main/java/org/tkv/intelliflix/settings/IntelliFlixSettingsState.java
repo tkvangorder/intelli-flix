@@ -8,6 +8,9 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Settings model that is serialized/deserialized by IntelliJ's infrastructure.
+ */
 @State(name = "org.tkv.intelliflix.settings.IntelliFlixSettingsState", storages = @Storage("IntelliFlixPlugin.xml"))
 public class IntelliFlixSettingsState implements PersistentStateComponent<IntelliFlixSettingsState> {
 

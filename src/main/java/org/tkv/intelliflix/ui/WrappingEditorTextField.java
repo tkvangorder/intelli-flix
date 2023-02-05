@@ -7,6 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Needed a wrapping version of the editor text field that also allows for a preferred size.
+ */
 public class WrappingEditorTextField  extends EditorTextField {
 
     private final int preferredWidth;

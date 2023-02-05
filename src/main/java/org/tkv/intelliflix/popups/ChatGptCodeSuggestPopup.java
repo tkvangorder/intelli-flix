@@ -17,6 +17,17 @@ import org.tkv.intelliflix.ui.WrappingEditorTextField;
 
 import javax.swing.*;
 
+/**
+ * Popup rendered when the user clicks the "OpenGPT Code Suggestion" context menu item while text is selected.
+ * <p>
+ * The actual call to ChatGPT is made in the background using a ProgressManager task.
+ *
+ * Known Issues/Improvements:
+ * - The popup is currently being rendered as a balloon dialog and if the user attempts to use arrow keys to navigate
+ *   inside the prompt, the editor will lose focus and the balloon will disappear.
+ * - An improvement here would be to render the result in the dialog and allow the user to decide if they want to
+ *   replace the selected text with the result.
+ */
 public class ChatGptCodeSuggestPopup {
     private final EditorTextField chatPrompt;
     private final JButton submitButton;

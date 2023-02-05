@@ -6,6 +6,9 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * This action opens the IntelliFlix tool window and is visible in the "Tools" menu.
+ */
 public class OpenChatAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {

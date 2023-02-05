@@ -39,11 +39,6 @@ There is also a context menu available in the editor that allows a user to selec
 
 ![](./images/code-suggest-3.png)
 
-## Build Status
-![Build](https://github.com/tkvangorder/intelli-flix/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
 ## TODO
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
 - [x] Get familiar with the [template documentation][template].
@@ -63,6 +58,7 @@ field.
 
 ## Future Considerations & Known Issues
 - [ ] Fix the code suggestion dialog so that it does not close when the user uses arrow keys inside the prompt text
+- [ ] Add Nullable/NotNull annotations
 - [ ] Provide usage feedback from chatGPT response into IDE. Maybe in status bar at the bottom of the IDE?
 - [ ] Add button to accept the chatGPT response and close the dialog rather than blinding replacing the existing selection.
 - [ ] Add a prompt/instruction history and allow the user to recall previous prompts.

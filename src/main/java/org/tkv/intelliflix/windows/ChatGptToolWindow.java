@@ -15,6 +15,9 @@ import org.tkv.intelliflix.ui.WrappingEditorTextField;
 
 import javax.swing.*;
 
+/**
+ * Tool window rendered when the user clicks the "Chat With OpenGPT" context menu item.
+ */
 public class ChatGptToolWindow {
     private final EditorTextField chatPrompt;
 

@@ -7,6 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
+/**
+ * A code edit request to be sent to the OpenAI API. This is not a complete representation of the request, but only the parts
+ * currently used by the client.
+ *
+ * This class provides a builder that will set default values for the model and temperature fields when they are not
+ * otherwise provided.
+ */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
