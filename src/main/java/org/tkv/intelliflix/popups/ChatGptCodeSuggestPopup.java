@@ -2,10 +2,14 @@ package org.tkv.intelliflix.popups;
 
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Caret;
-import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.progress.Task;
+import com.intellij.openapi.progress.impl.BackgroundableProcessIndicator;
 import com.intellij.ui.EditorTextField;
 import com.intellij.util.ui.FormBuilder;
+import org.jetbrains.annotations.NotNull;
 import org.tkv.intelliflix.chatgpt.ChatResponse;
 import org.tkv.intelliflix.chatgpt.EditRequest;
 import org.tkv.intelliflix.services.IntelliFlixProjectService;
@@ -42,48 +46,79 @@ public class ChatGptCodeSuggestPopup {
     }
 
     public void submitButtonClicked() {
-        String error = null;
-        try {
-            //Need to do this on a non-UI thread, how do I do that?
-            String prompt = chatPrompt.getText();
+        String prompt = chatPrompt.getText();
+        if (prompt.isEmpty()) {
+            errorPanel.setText("You must enter a prompt to get a response.");
+        }
+        Caret primaryCaret = editor.getCaretModel().getPrimaryCaret();
+        String selected = primaryCaret.getSelectedText();
 
-            Document document = editor.getDocument();
-            Caret primaryCaret = editor.getCaretModel().getPrimaryCaret();
-            String selected = primaryCaret.getSelectedText();
+        ChatGptTask task = new ChatGptTask(prompt, selected);
 
-            ChatResponse response = projectService.getChatGptClient().sendEditRequest(
-                EditRequest.builder()
-                        .instruction(prompt)
-                        .input(selected)
-                        .build());
+        ProgressManager.getInstance().runProcessWithProgressAsynchronously(
+                task, new BackgroundableProcessIndicator(task)
+        );
+    }
 
-            // Note: Result needs to be effectively final to be used in the lambda below.
-            String result;
-            if (response.getChoices() != null && response.getChoices().size() > 0) {
-                result = response.getChoices().get(0).getText();
-            } else if (response.getError() != null)  {
-                error = response.getError().getMessage();
-                result = null;
-            } else {
-                error = "No response from server.";
-                result = null;
+    private class ChatGptTask extends Task.Backgroundable {
+
+        private final String prompt;
+
+        private final String input;
+
+        private String result;
+
+        private String error;
+
+        public ChatGptTask(String prompt, String input) {
+            super(projectService.getProject(), "Chat GPT");
+            this.prompt = prompt;
+            this.input = input;
+        }
+
+        @Override
+        public void run(@NotNull ProgressIndicator indicator) {
+            indicator.setIndeterminate(true);
+            indicator.setText("Sending request to server...");
+
+
+            try {
+
+                ChatResponse response = projectService.getChatGptClient().sendEditRequest(
+                        EditRequest.builder()
+                                .instruction(prompt)
+                                .input(input)
+                                .build());
+
+                if (response.getChoices() != null && response.getChoices().size() > 0) {
+                    result = response.getChoices().get(0).getText();
+                } else if (response.getError() != null) {
+                    error = response.getError().getMessage();
+                } else {
+                    error = "No response from server.";
+                }
+            } catch (Exception e) {
+                error = e.getMessage();
             }
+            indicator.setText("Got response from server.");
+        }
 
+        @Override
+        public void onSuccess() {
             if (result != null) {
+                Caret primaryCaret = editor.getCaretModel().getPrimaryCaret();
+
                 // Replace the selected text with the result
                 int start = primaryCaret.getSelectionStart();
                 int end = primaryCaret.getSelectionEnd();
                 WriteCommandAction.runWriteCommandAction(projectService.getProject(), () ->
-                        document.replaceString(start, end, result)
+                        editor.getDocument().replaceString(start, end, result)
                 );
 
+            } else if (error != null) {
+                errorPanel.setText(error);
             }
-
-        } catch (Exception e) {
-            error = e.getMessage();
-        }
-        if (error != null) {
-            errorPanel.setText(error);
         }
     }
+
 }

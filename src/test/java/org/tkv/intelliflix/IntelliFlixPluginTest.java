@@ -6,6 +6,7 @@ import com.intellij.psi.xml.XmlFile;
 import com.intellij.testFramework.TestDataPath;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import com.intellij.util.PsiErrorElementUtil;
+import org.tkv.intelliflix.chatgpt.ChatGptClient;
 import org.tkv.intelliflix.services.IntelliFlixProjectService;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,7 +30,8 @@ public class IntelliFlixPluginTest extends BasePlatformTestCase {
 
     public void testProjectService() {
         IntelliFlixProjectService projectService = getProject().getService(IntelliFlixProjectService.class);
-        assertEquals("yes, this is fred.", projectService.fred());
+        ChatGptClient client = projectService.getChatGptClient();
+        assertThat(client).isNotNull();
     }
 
     @Override
