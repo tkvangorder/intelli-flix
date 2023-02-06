@@ -4,7 +4,7 @@ This repo was created from the IntelliJ Platform Plugin Template. It is a protot
 
 ## Running the Plugin
 
-To run the plugin, you can use the `runIde` Gradle task. This will launch a new instance of IntelliJ with the plugin installed.  Or, ff you have imported the project into IntelliJ, you can also run the plugin using the "Run Plugin" run configuration.
+To run the plugin, you can use the `runIde` Gradle task. This will launch a new instance of IntelliJ with the plugin installed.  Or, if you have imported the project into IntelliJ, you can also run the plugin using the "Run Plugin" run configuration.
 
 ### Setting the API Key
 
@@ -54,13 +54,13 @@ There is also a context menu available in the editor that allows a user to selec
 - [x] Add a settings page to allow users to configure the API key.
 - [x] Figure out how to call the chatGPT API from a background thread, so we don't freeze the UI.
 field.
-- [ ] Document the plugin
+- [x] Document the plugin
 
 ## Future Considerations & Known Issues
 - [ ] Fix the code suggestion dialog so that it does not close when the user uses arrow keys inside the prompt text
 - [ ] Add Nullable/NotNull annotations
 - [ ] Provide usage feedback from chatGPT response into IDE. Maybe in status bar at the bottom of the IDE?
-- [ ] Add button to accept the chatGPT response and close the dialog rather than blinding replacing the existing selection.
+- [ ] Add button to accept the chatGPT response and close the dialog rather than blindly replacing the existing selection.
 - [ ] Add a prompt/instruction history and allow the user to recall previous prompts.
 - [ ] Experiment with different prompts that could augment the user's prompts/instructions. For example, we could add "Always format your responses as markdown" and then render the results in the tools window.
 - [ ] Add better testing. I am sure there are some good examples of testing the UI components in the IntelliJ Platform SDK, I just ran out of time to investigate.
